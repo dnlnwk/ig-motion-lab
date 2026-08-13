@@ -1,0 +1,119 @@
+@keyframes draw-checkmark {
+    from {
+        stroke-dashoffset: 1;
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.noise-overlay {
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@keyframes card-success-pulse {
+    0% {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+    30% {
+        border-color: rgba(52, 211, 153, 0.6);
+    }
+    100% {
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+}
+
+.card-success-pulse {
+    animation: card-success-pulse 1.8s ease-out;
+}
+
+.checkmark-path {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: draw-checkmark 0.6s ease-out forwards;
+}
+
+@keyframes progress-ring {
+    from {
+        stroke-dashoffset: var(--circumference);
+    }
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+.progress-ring-path {
+    animation: progress-ring 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+@keyframes pop-in {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    60% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.success-pop {
+    animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes radar-pulse-button {
+    0% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+    100% {
+        transform: scale(20);
+        opacity: 0;
+    }
+}
+
+.radar-ring-button {
+    animation: radar-pulse-button 1.8s ease-out both;
+}
+
+@keyframes button-bounce {
+    0% {
+        transform: scale(1);
+    }
+    30% {
+        transform: scale(1.16);
+    }
+    55% {
+        transform: scale(0.9);
+    }
+    80% {
+        transform: scale(1.04);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.button-bounce {
+    animation: button-bounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card-success-pulse,
+    .checkmark-path,
+    .progress-ring-path,
+    .success-pop,
+    .radar-ring-button,
+    .button-bounce {
+        animation: none;
+    }
+
+    .animate-spin {
+        animation-duration: 1.5s;
+    }
+}
