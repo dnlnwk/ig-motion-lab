@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import { Send } from 'lucide-react';
 import clsx from 'clsx';
 
-export type Status = 'idle' | 'loading' | 'success';
+export type Status = 'idle' | 'loading' | 'error';
 
 const IDLE_WIDTH = 200;
 const CIRCLE_WIDTH = 48;
@@ -15,7 +15,7 @@ type SubmitButtonProps = {
 
 export function SubmitButton({ status }: SubmitButtonProps) {
   const isLoading = status === 'loading';
-  const isSuccess = status === 'success';
+  const isError = status === 'error';
   const buttonRef = useRef<HTMLButtonElement>(null);
   const prevStatus = useRef<Status | null>(null);
 
@@ -31,8 +31,8 @@ export function SubmitButton({ status }: SubmitButtonProps) {
 
   return (
     <div className="relative inline-flex items-center justify-center">
-      {isSuccess && (
-        <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-emerald-400 radar-ring-button" />
+      {isError && (
+        <span className="pointer-events-none absolute inset-0 -z-10 rounded-full bg-red-400 radar-ring-button" />
       )}
 
       <button
@@ -40,19 +40,21 @@ export function SubmitButton({ status }: SubmitButtonProps) {
         type="submit"
         disabled={status !== 'idle'}
         aria-busy={isLoading}
-        aria-label={isLoading ? 'Sending message' : isSuccess ? 'Message sent' : 'Send message'}
+        aria-label={
+          isLoading ? 'Sending message' : isError ? 'Message failed to send' : 'Send message'
+        }
         style={{ width: status === 'idle' ? IDLE_WIDTH : CIRCLE_WIDTH }}
         className={clsx(
           'relative h-12 rounded-full font-semibold text-white shadow-lg',
           'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-violet-300',
           '[transition:width_0.55s_cubic-bezier(0.34,1.56,0.64,1),background-color_0.4s_ease-out,filter_0.4s_ease-out]',
-          isSuccess ? 'bg-emerald-500' : 'bg-white',
+          isError ? 'bg-red-500' : 'bg-white',
           status === 'idle' ? 'cursor-pointer hover:brightness-95' : 'cursor-default'
         )}
       >
         <IdleLabel active={status === 'idle'} />
         <LoadingSpinner active={isLoading} />
-        <SuccessCheck active={isSuccess} />
+        <ErrorIcon active={isError} />
       </button>
     </div>
   );
@@ -88,7 +90,7 @@ function LoadingSpinner({ active }: { active: boolean }) {
   );
 }
 
-function SuccessCheck({ active }: { active: boolean }) {
+function ErrorIcon({ active }: { active: boolean }) {
   return (
     <span
       className={clsx(
@@ -97,15 +99,27 @@ function SuccessCheck({ active }: { active: boolean }) {
         active ? 'opacity-100' : 'opacity-0'
       )}
     >
-      <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        className={clsx('h-5 w-5', active ? 'error-icon-pop' : '')}
+        aria-hidden="true"
+      >
         <path
-          d="M4 12.5L9.5 18L20 6"
+          d="M6 6L18 18"
           stroke="white"
-          strokeWidth="2.5"
+          strokeWidth="3"
           strokeLinecap="round"
-          strokeLinejoin="round"
           pathLength="1"
-          className={active ? 'checkmark-path' : ''}
+          className={active ? 'error-icon-path-1' : ''}
+        />
+        <path
+          d="M18 6L6 18"
+          stroke="white"
+          strokeWidth="3"
+          strokeLinecap="round"
+          pathLength="1"
+          className={active ? 'error-icon-path-2' : ''}
         />
       </svg>
     </span>

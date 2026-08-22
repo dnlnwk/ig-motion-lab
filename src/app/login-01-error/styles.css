@@ -1,4 +1,4 @@
-@keyframes draw-checkmark {
+@keyframes draw-error-icon {
   from {
     stroke-dashoffset: 1;
   }
@@ -7,31 +7,80 @@
   }
 }
 
+@keyframes error-icon-pop {
+  0% {
+    transform: scale(0.4) rotate(-20deg);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.25) rotate(8deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
 .noise-overlay {
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-@keyframes card-success-pulse {
+@keyframes card-error-pulse {
   0% {
     border-color: rgba(255, 255, 255, 0.2);
   }
   30% {
-    border-color: rgba(52, 211, 153, 0.6);
+    border-color: rgba(248, 113, 113, 0.6);
   }
   100% {
     border-color: rgba(255, 255, 255, 0.2);
   }
 }
 
-.card-success-pulse {
-  animation: card-success-pulse 1.8s ease-out;
+.card-error-pulse {
+  animation: card-error-pulse 1.8s ease-out;
 }
 
-.checkmark-path {
+@keyframes card-shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-8px);
+  }
+  40% {
+    transform: translateX(7px);
+  }
+  60% {
+    transform: translateX(-5px);
+  }
+  80% {
+    transform: translateX(3px);
+  }
+}
+
+.card-shake {
+  animation: card-shake 0.4s ease-in-out;
+}
+
+.error-icon-pop {
+  transform-origin: center;
+  animation: error-icon-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.error-icon-path-1 {
   stroke-dasharray: 1;
   stroke-dashoffset: 1;
-  animation: draw-checkmark 0.6s ease-out forwards;
+  animation: draw-error-icon 0.22s ease-out forwards;
+}
+
+.error-icon-path-2 {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: draw-error-icon 0.22s ease-out 0.12s forwards;
 }
 
 @keyframes progress-ring {
@@ -104,8 +153,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card-success-pulse,
-  .checkmark-path,
+  .card-error-pulse,
+  .card-shake,
+  .error-icon-pop,
+  .error-icon-path-1,
+  .error-icon-path-2,
   .progress-ring-path,
   .success-pop,
   .radar-ring-button,

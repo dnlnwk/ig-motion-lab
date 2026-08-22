@@ -13,16 +13,16 @@ export function ContactForm() {
     if (status !== 'idle') return;
 
     setStatus('loading');
-    window.setTimeout(() => setStatus('success'), 1400);
+    window.setTimeout(() => setStatus('error'), 1400);
   }
 
   const isLoading = status === 'loading';
-  const isSuccess = status === 'success';
+  const isError = status === 'error';
 
   return (
     <div
       className={`relative w-full max-w-md overflow-hidden rounded-3xl border border-white/20 bg-linear-to-b from-white/15 to-white/5 p-8 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.15),0_25px_50px_-12px_rgba(0,0,0,0.4)] backdrop-blur-xl ${
-        isSuccess ? 'card-success-pulse' : ''
+        isError ? 'card-error-pulse card-shake' : ''
       }`}
     >
       <div
@@ -105,11 +105,15 @@ export function ContactForm() {
             role="status"
             aria-live="polite"
             aria-atomic="true"
-            className={`text-xs transition duration-300 ${isSuccess ? 'text-emerald-300' : 'text-white/70'} ${
-              isLoading || isSuccess ? 'opacity-100' : 'opacity-0'
+            className={`text-xs transition duration-300 ${isError ? 'text-red-300' : 'text-white/70'} ${
+              isLoading || isError ? 'opacity-100' : 'opacity-0'
             }`}
           >
-            {isLoading ? 'Sending message…' : isSuccess ? 'Message sent!' : '\u00A0'}
+            {isLoading
+              ? 'Sending message…'
+              : isError
+                ? 'Something went wrong. Please try again.'
+                : '\u00A0'}
           </p>
         </div>
       </form>
