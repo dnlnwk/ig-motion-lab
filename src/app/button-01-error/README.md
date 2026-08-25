@@ -1,5 +1,9 @@
 # Button 01 — Error
 
+<p align="center">
+  <img src="https://ig.dnlnwk.de/projects/button-01-error-website.webp" style="max-width: 400px; width: 100%;" alt="Button 01 Error preview" />
+</p>
+
 A glassmorphic contact form with an animated submit button, recreating a micro-interaction seen on Instagram — this variant shows the failure state.
 
 ## Flow
