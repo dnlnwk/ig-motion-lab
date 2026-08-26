@@ -3,6 +3,10 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --violet-bg: #2b1245;
+  --violet-dark: #3b1c5e;
+  --violet-medium: #804ad6;
+  --violet-light: #8c80bb;
   --orange-light: #ffa844;
   --orange-medium: #ec594c;
   --orange-dark: #c1272d;
@@ -23,4 +27,29 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+.scene-bg {
+  background-image:
+    radial-gradient(
+      1100px circle at 88% -8%,
+      color-mix(in srgb, var(--violet-light) 55%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      750px circle at -8% 106%,
+      color-mix(in srgb, var(--orange-medium) 22%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      650px circle at 58% 58%,
+      color-mix(in srgb, var(--violet-medium) 45%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      500px circle at 15% 12%,
+      color-mix(in srgb, var(--orange-light) 14%, transparent),
+      transparent 55%
+    ),
+    linear-gradient(160deg, var(--violet-dark) 0%, var(--violet-bg) 48%, #100a2b 100%);
 }
