@@ -1,7 +1,7 @@
 # Navigation 01
 
 <p align="center">
-  <img src="https://ig.dnlnwk.de/projects/navigation-01-website.webp" style="max-width: 250px; width: 100%;" alt="Button 01 Success preview" />
+  <img src="https://ig.dnlnwk.de/projects/navigation-01-website.webp" style="max-width: 250px; width: 100%;" alt="" />
 </p>
 
 
