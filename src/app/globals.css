@@ -53,3 +53,29 @@ body {
     ),
     linear-gradient(160deg, var(--violet-dark) 0%, var(--violet-bg) 48%, #100a2b 100%);
 }
+
+/* Same dark violet base as .scene-bg, but the accent glows are all orange instead of violet/orange mixed. */
+.scene-bg-2 {
+  background-image:
+    radial-gradient(
+      1100px circle at 88% -8%,
+      color-mix(in srgb, var(--orange-light) 50%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      750px circle at -8% 106%,
+      color-mix(in srgb, var(--orange-dark) 30%, transparent),
+      transparent 58%
+    ),
+    radial-gradient(
+      650px circle at 58% 58%,
+      color-mix(in srgb, var(--orange-medium) 40%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      500px circle at 15% 12%,
+      color-mix(in srgb, var(--orange-light) 16%, transparent),
+      transparent 55%
+    ),
+    linear-gradient(160deg, var(--violet-dark) 0%, var(--violet-bg) 48%, #100a2b 100%);
+}
