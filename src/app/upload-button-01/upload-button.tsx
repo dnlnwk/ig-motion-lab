@@ -6,7 +6,7 @@ import {
   useMotionValue,
   useReducedMotion,
   useTransform,
-} from 'framer-motion';
+} from 'motion/react';
 import { Check, Upload } from 'lucide-react';
 import clsx from 'clsx';
 
