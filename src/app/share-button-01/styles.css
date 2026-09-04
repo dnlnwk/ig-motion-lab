@@ -1,0 +1,91 @@
+@keyframes hero-headline-shimmer {
+  0% {
+    background-position: 160% center;
+  }
+  100% {
+    background-position: -160% center;
+  }
+}
+
+.hero-headline-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    rgba(43, 18, 69, 0.65) 0%,
+    rgba(43, 18, 69, 0.65) 46%,
+    rgba(43, 18, 69, 0.95) 50%,
+    rgba(43, 18, 69, 0.65) 54%,
+    rgba(43, 18, 69, 0.65) 100%
+  );
+  background-size: 220% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: hero-headline-shimmer 5s ease-in-out infinite;
+}
+
+.share-shell {
+  background-color: transparent;
+}
+
+.share-toggle {
+  background-color: var(--violet-dark);
+  color: #ffffff;
+  transition: background-color 0.25s ease;
+}
+
+.share-toggle:hover {
+  background-color: var(--violet-medium);
+}
+
+.share-toggle:focus-visible {
+  outline: 2px solid var(--orange-medium);
+  outline-offset: 3px;
+}
+
+.share-chip {
+  background-color: var(--violet-light);
+  color: var(--violet-bg);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.share-chip:not(:disabled):hover {
+  background-color: var(--orange-medium);
+  color: #ffffff;
+}
+
+.share-chip:focus-visible {
+  outline: 2px solid var(--orange-medium);
+  outline-offset: 3px;
+}
+
+.share-chip-selected {
+  background-color: var(--orange-medium);
+  color: #ffffff;
+}
+
+.share-chip:disabled {
+  cursor: default;
+}
+
+/* Click/select ripples, colored to match the element they emanate from (toggle = violet, selected chip = orange). */
+.share-ping {
+  box-shadow: 0 0 0 2px rgba(128, 74, 214, 0.55);
+}
+
+.share-ping-accent {
+  box-shadow: 0 0 0 2px rgba(236, 89, 76, 0.7);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-headline-shimmer {
+    animation: none;
+    color: rgba(43, 18, 69, 0.85);
+  }
+
+  .share-toggle,
+  .share-chip {
+    transition-duration: 0.001ms;
+  }
+}
