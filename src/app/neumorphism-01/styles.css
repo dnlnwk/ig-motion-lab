@@ -1,0 +1,237 @@
+.neu-panel {
+  --neu-bg: #e7ebf2;
+  --neu-dark: #b4bcca;
+  --neu-light: #ffffff;
+  background: var(--neu-bg);
+}
+
+@keyframes hero-headline-shimmer {
+  0% {
+    background-position: 160% center;
+  }
+  100% {
+    background-position: -160% center;
+  }
+}
+
+.hero-headline-shimmer {
+  background-image: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(255, 255, 255, 0.65) 46%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.65) 54%,
+    rgba(255, 255, 255, 0.65) 100%
+  );
+  background-size: 220% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: hero-headline-shimmer 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-headline-shimmer {
+    animation: none;
+    color: rgba(255, 255, 255, 0.75);
+  }
+}
+
+/* Raised surface: soft light/dark shadow pair reading as a bump above the panel. */
+.neu-raised {
+  background: var(--neu-bg);
+  box-shadow:
+    6px 6px 12px var(--neu-dark),
+    -6px -6px 12px var(--neu-light);
+  transition:
+    box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Slight lift on hover before the press, so the dip on click reads as a deliberate step down. */
+.neu-raised:hover {
+  box-shadow:
+    8px 8px 18px var(--neu-dark),
+    -8px -8px 18px var(--neu-light);
+  transform: translateY(-1px);
+}
+
+.neu-raised:active {
+  box-shadow:
+    inset 3px 3px 6px var(--neu-dark),
+    inset -3px -3px 6px var(--neu-light);
+  transform: scale(0.96);
+  /* Snappier press-down than the release, for a tactile click feel. */
+  transition-duration: 0.09s;
+}
+
+/* Pressed/inset surface: reads as a carved-in well, used for fields + the "liked" state. */
+.neu-pressed {
+  background: var(--neu-bg);
+  box-shadow:
+    inset 4px 4px 8px var(--neu-dark),
+    inset -4px -4px 8px var(--neu-light);
+  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Shares the same transitionable box-shadow so raised <-> pressed swaps (e.g. the like button) animate smoothly. */
+button.neu-pressed:active {
+  transform: scale(0.97);
+  transition-duration: 0.09s;
+}
+
+.neu-pressed-sm {
+  background: var(--neu-bg);
+  box-shadow:
+    inset 2px 2px 4px var(--neu-dark),
+    inset -2px -2px 4px var(--neu-light);
+}
+
+/* Plain icon, no chrome, for the small flat glyph in the top row. */
+.neu-flat {
+  background: transparent;
+  box-shadow: none;
+}
+
+.neu-input {
+  background: transparent;
+  color: #7b8494;
+}
+
+.neu-input::placeholder {
+  color: #a3acbc;
+  letter-spacing: 0.08em;
+}
+
+.neu-input:focus {
+  outline: none;
+}
+
+/* Toggle switch track + knob, off state is flat neu-bg, on state fills with a violet gradient. */
+.neu-toggle-track {
+  background: var(--neu-bg);
+  box-shadow:
+    inset 3px 3px 6px var(--neu-dark),
+    inset -3px -3px 6px var(--neu-light);
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neu-toggle-track:active {
+  transform: scale(0.96);
+}
+
+.neu-toggle-track[data-on='true'] {
+  background: linear-gradient(135deg, var(--violet-medium), var(--violet-dark));
+  box-shadow:
+    inset 2px 2px 4px rgba(0, 0, 0, 0.25),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.15);
+}
+
+.neu-toggle-knob {
+  background: var(--neu-bg);
+  box-shadow:
+    2px 2px 4px var(--neu-dark),
+    -2px -2px 4px var(--neu-light);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.neu-toggle-track[data-on='true'] .neu-toggle-knob {
+  background: #ffffff;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Speech-bubble style tail for the notification chips. */
+.neu-tail {
+  position: absolute;
+  bottom: -8px;
+  left: 22px;
+  width: 16px;
+  height: 16px;
+  background: var(--neu-bg);
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  transform: rotate(0deg);
+}
+
+.neu-progress-fill {
+  background: linear-gradient(180deg, #ced4e0, #b9c1d1);
+  box-shadow:
+    1px 1px 2px var(--neu-dark),
+    -1px -1px 2px var(--neu-light);
+}
+
+/* Vertical range sliders (search-column knobs): cross-browser vertical orientation trick. */
+.neu-slider-vertical {
+  writing-mode: vertical-lr;
+  direction: rtl;
+  appearance: none;
+  width: 6px;
+  height: 140px;
+  background: var(--neu-bg);
+  border-radius: 999px;
+  box-shadow:
+    inset 3px 3px 6px var(--neu-dark),
+    inset -3px -3px 6px var(--neu-light);
+}
+
+.neu-slider-vertical::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--neu-bg);
+  box-shadow:
+    2px 2px 5px var(--neu-dark),
+    -2px -2px 5px var(--neu-light);
+  cursor: pointer;
+  transition:
+    transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.15s ease;
+}
+
+.neu-slider-vertical:hover::-webkit-slider-thumb {
+  transform: scale(1.1);
+}
+
+.neu-slider-vertical:active::-webkit-slider-thumb {
+  transform: scale(1.2);
+  box-shadow:
+    1px 1px 3px var(--neu-dark),
+    -1px -1px 3px var(--neu-light);
+}
+
+.neu-slider-vertical::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: none;
+  border-radius: 999px;
+  background: var(--neu-bg);
+  box-shadow:
+    2px 2px 5px var(--neu-dark),
+    -2px -2px 5px var(--neu-light);
+  cursor: pointer;
+  transition:
+    transform 0.15s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.15s ease;
+}
+
+.neu-slider-vertical:hover::-moz-range-thumb {
+  transform: scale(1.1);
+}
+
+.neu-slider-vertical:active::-moz-range-thumb {
+  transform: scale(1.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .neu-raised,
+  .neu-pressed,
+  .neu-toggle-track,
+  .neu-toggle-knob,
+  .neu-slider-vertical::-webkit-slider-thumb,
+  .neu-slider-vertical::-moz-range-thumb {
+    transition: none;
+  }
+}
